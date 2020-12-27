@@ -89,15 +89,15 @@ namespace LiveChartTest
                 
             });
             cartesianChart1.Series.Clear();
-            var s = new ChartValues<double>();
-            double[] d = new double[dataPreparation.dataToPrint.Values.Count];
-            dataPreparation.dataToPrint.Values.ToArray().CopyTo(d, 0);
-            s.AddRange(d);
+            var chart = new ChartValues<double>();
+            double[] doubleArray = new double[dataPreparation.dataToPrint.Values.Count];
+            dataPreparation.dataToPrint.Values.ToArray().CopyTo(doubleArray, 0);
+            chart.AddRange(doubleArray);
             SeriesCollection series = new SeriesCollection();
             series.Add(new LineSeries()
             {
                 Title = "Value",
-                Values = s,
+                Values = chart,
                 AllowDrop = true,
                 PointGeometry = null
             });
@@ -109,8 +109,8 @@ namespace LiveChartTest
 
         private void Form1_Resize(object sender, EventArgs e)
         {
-            //cartesianChart1.Height = this.Height - cartesianChart1.Location.Y - 100;
-            //cartesianChart1.Width = this.Width - cartesianChart1.Location.X - 100;
+            cartesianChart1.Height = this.DisplayRectangle.Height - cartesianChart1.Location.Y;
+            cartesianChart1.Width = this.DisplayRectangle.Width - cartesianChart1.Location.X;
         }
 
         private void cartesianChart1_ChildChanged(object sender, System.Windows.Forms.Integration.ChildChangedEventArgs e)
